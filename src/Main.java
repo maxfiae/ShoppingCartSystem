@@ -11,42 +11,48 @@ public class Main {
             System.out.println("Choose an option: ");
             int choice = getIntInput(scanner);
 
-            if (choice == 1) {
-                System.out.println("Enter product name: ");
-                String name = scanner.nextLine();
-                System.out.println("Enter price: ");
-                double price = getDoubleInput(scanner);
-                System.out.println("Enter quantity: ");
-                int quantity = getIntInput(scanner);
-                cart.addProduct(new Product(name, price, quantity));
+            String name;
+            double price, discount;
+            int quantity;
 
-            } else if (choice == 2) {
-                System.out.println("Enter product name: ");
-                String name = scanner.nextLine();
-                System.out.println("Enter price: ");
-                double price = getDoubleInput(scanner);
-                System.out.println("Enter quantity: ");
-                int quantity = getIntInput(scanner);
-                System.out.println("Enter discount percentage: ");
-                double discount = getDoubleInput(scanner);
-                cart.addProduct(new DiscountedProduct(name, price, quantity, discount));
-
-            } else if (choice == 3) {
-                cart.displayCart();
-
-            } else if (choice == 4) {
-                System.out.println("Enter product name to remove: ");
-                String name = scanner.nextLine();
-                System.out.println("Enter quantity to remove: ");
-                int quantity = getIntInput(scanner);
-                cart.removeProduct(name, quantity);
-
-            } else if (choice == 5) {
-                System.out.println("Exiting... Thank you!");
-                break;
-
-            } else {
-                System.out.println("Invalid option. Please enter a number between 1 and 5.");
+            switch (choice) {
+                case 1:
+                    System.out.println("Enter product name: ");
+                    name = scanner.nextLine();
+                    System.out.println("Enter price: ");
+                    price = getDoubleInput(scanner);
+                    System.out.println("Enter quantity: ");
+                    quantity = getIntInput(scanner);
+                    cart.addProduct(new Product(name, price, quantity));
+                    break;
+                case 2:
+                    System.out.println("Enter product name: ");
+                    name = scanner.nextLine();
+                    System.out.println("Enter price: ");
+                    price = getDoubleInput(scanner);
+                    System.out.println("Enter quantity: ");
+                    quantity = getIntInput(scanner);
+                    System.out.println("Enter discount percentage: ");
+                    discount = getDoubleInput(scanner);
+                    cart.addProduct(new DiscountedProduct(name, price, quantity, discount));
+                    break;
+                case 3:
+                    cart.displayCart();
+                    break;
+                case 4:
+                    System.out.println("Enter product name to remove: ");
+                    name = scanner.nextLine();
+                    System.out.println("Enter quantity to remove: ");
+                    quantity = getIntInput(scanner);
+                    cart.removeProduct(name, quantity);
+                    break;
+                case 5:
+                    System.out.println("Exiting... Thank you!");
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("Invalid option. Please enter a number between 1 and 5.");
+                    break;
             }
         }
     }
